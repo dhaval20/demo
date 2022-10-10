@@ -1,0 +1,131 @@
+<div class="mt-5 px-4">
+    <div class="container-fluid">
+        <h2>Submission</h2>
+        <div class="row gx-5">
+            <div class="col col-9">
+                <div class="row gx-4">
+                    <div class="col">
+                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="name@example.com">
+                    </div>
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <input type="date" class="form-control" id="date"  />
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <ul class="tab-bar nav nav-pillsalign-items-center">
+                    <li class="nav-item my-0 {{ displayView === 'map' ? 'active' : ''}} rounded-start border border-end-0" (click)="switchView('map')">
+                        <span>Map</span>
+                    </li>
+                    <li class="nav-item my-0 {{ displayView === 'list' ? 'active' : ''}} rounded-end border border-start-0" (click)="switchView('list')">
+                        <span>List</span>
+                    </li>
+                </ul>
+                <button href="#" target="_blank" class="btn nav-link"><i class="fas fa-solid fa-file-arrow-down"></i>
+                    Export</button>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="displayView === 'list'">
+        <div class="shadow p-0 bg-white rounded p-0 my-4">
+            <table class="table mb-0">
+                <tbody>
+                    <tr>
+                        <th scope="col"><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                                aria-label="..."></th>
+                        <th scope="col">Task</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Customer Address</th>
+                        <th scope="col">Due Date</th>
+                    </tr>
+                    <tr *ngFor="let i of numbers">
+                        <td><input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                                aria-label="..."></td>
+                        <td>Work Flow: Requires Location</td>
+                        <td><span class="badge badge-success"><i class="fas fa-solid fa-circle badge-point"></i> Low
+                                Risk</span></td>
+                        <td>@zendu@zendu.com</td>
+                        <td>tracy@zenduit.com</td>
+                        <td>2118 Thornridge Cir. Syracuse, Connecticut 35624</td>
+                        <td><span class="text-danger">Oct 6, 02:38 AM</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div> 1-10 of 176 submissions</div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <i class="fas fa-light fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#">8</a></li>
+                    <li class="page-item"><a class="page-link" href="#">9</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <i class="fas fa-light fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="ps-3 mt-4" *ngIf="displayView === 'map'">
+        <div class="row gx-4">
+            <div class="col-4">
+                <div class="card card-body d-flex mb-3" *ngFor="let i of numbers">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h6 class="text-dark me-1">
+                            Work Flow: Requires Location
+                        </h6>
+                        <span class="badge badge-danger">
+                            <i class="fas fa-solid fa-circle badge-point"></i> Uncomplete
+                        </span>
+                    </div>
+                    <div><span class="text-muted">From:</span> Requires Location</div>
+                    <div><span class="text-muted">To:</span> Requires Location</div>
+                    <div><span class="text-muted">Due Date: </span> <span class="text-danger"> 06 December</span></div>
+                </div>
+            </div>
+            <div class="col-8">
+                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
+                    [zoomControl]="false">
+
+                    <agm-marker *ngFor="let m of markers; let i = index"
+                        [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
+
+                        <agm-info-window>
+                            <strong>InfoWindow content</strong>
+                        </agm-info-window>
+
+                    </agm-marker>
+
+                </agm-map>
+            </div>
+        </div>
+    </div>
+</div>
