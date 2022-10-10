@@ -8,31 +8,27 @@ import { Component, OnInit } from '@angular/core';
 export class SubmissionComponent implements OnInit {
   numbers: Number[] = Array(10).map((x,i)=>i)
   displayView = "list";
-  // google maps zoom level
-  zoom: number = 8;
   
-  // initial center position for the map
-  lat: number = 51.673858;
-  lng: number = 7.815982;
-
-  markers: any[] = [
+  center: google.maps.LatLngLiteral = {
+    lat: 24,
+    lng: 12
+  };
+  zoom = 4;
+  markerOptions: google.maps.MarkerOptions = {
+      draggable: false
+  };
+  markers: google.maps.LatLngLiteral[] = [
 	  {
 		  lat: 51.673858,
 		  lng: 7.815982,
-		  label: 'A',
-		  draggable: true
-	  },
+	 },
 	  {
 		  lat: 51.373858,
 		  lng: 7.215982,
-		  label: 'B',
-		  draggable: false
 	  },
 	  {
 		  lat: 51.723858,
 		  lng: 7.895982,
-		  label: 'C',
-		  draggable: true
 	  }
   ]
 

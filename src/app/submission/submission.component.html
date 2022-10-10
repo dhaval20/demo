@@ -1,5 +1,5 @@
-<div class="mt-5 px-4">
-    <div class="container-fluid">
+<div class="">
+    <div class="container-fluid mt-5 px-4">
         <h2>Submission</h2>
         <div class="row gx-5">
             <div class="col col-9">
@@ -94,9 +94,9 @@
             </nav>
         </div>
     </div>
-    <div class="ps-3 mt-4" *ngIf="displayView === 'map'">
-        <div class="row gx-4">
-            <div class="col-4">
+    <div class="ps-3 mt-4 map-view" *ngIf="displayView === 'map'">
+        <div class="d-flex flex-row gx-4">
+            <div class="scrollable-left">
                 <div class="card card-body d-flex mb-3" *ngFor="let i of numbers">
                     <div class="d-flex justify-content-between align-items-start">
                         <h6 class="text-dark me-1">
@@ -111,21 +111,15 @@
                     <div><span class="text-muted">Due Date: </span> <span class="text-danger"> 06 December</span></div>
                 </div>
             </div>
-            <div class="col-8">
-                <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false"
-                    [zoomControl]="false">
-
-                    <agm-marker *ngFor="let m of markers; let i = index"
-                        [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
-
-                        <agm-info-window>
-                            <strong>InfoWindow content</strong>
-                        </agm-info-window>
-
-                    </agm-marker>
-
-                </agm-map>
-            </div>
+            <google-map height="100%"
+                    width="100%"
+                    [center]="center"
+                    [zoom]="zoom">
+                    <map-marker *ngFor="let marker of markers"
+                    [position]="marker"
+                    [options]="markerOptions"></map-marker>
+                
+            </google-map>
         </div>
     </div>
 </div>

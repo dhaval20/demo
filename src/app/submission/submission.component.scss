@@ -17,11 +17,15 @@
         }
     }
 }
-
-agm-map {
-    height: 70vh;
+.map-view {
+    padding-bottom: 20px;
+    .scrollable-left {
+        height: 70vh;
+        overflow: auto;
+        width: 30%;
+        margin-right: 15px;
+    }    
 }
-
 .badge {
     &-success {
         /* Color/Success/Light */
